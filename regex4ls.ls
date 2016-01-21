@@ -12,12 +12,12 @@ UseLSX "*javacon"
 	See the documentation of the individual classes for code examples.
 %END REM
 
-REM Version: v1.1.0
+REM Version: v1.1.1
 
 REM Author: Harald Albers, HS - Hamburger Software GmbH & Co. KG
 
 %REM Copyright
-	Copyright (C) 2010 HS - Hamburger Software GmbH & Co. KG. All rights reserved.
+	Copyright (C) 2015 HS - Hamburger Software GmbH & Co. KG. All rights reserved.
 
 	This library is released under the Apache Licence Version 2.0, see
 	    http://www.apache.org/licenses/LICENSE-2.0.txt
@@ -158,7 +158,7 @@ Class AbstractRegexMatcher
 		Dim jSession As New JavaSession
 		Dim jPatternClass As JavaClass
 		Set jPatternClass = jSession.GetClass("java/util/regex/Pattern")
-		Set jPatternFactoryMethod = jPatternClass.GetMethod("compile",_
+		Set jPatternFactoryMethod = getJavaMethod(jPatternClass, "compile",_
 			"(Ljava/lang/String;I)Ljava/util/regex/Pattern;")
 	End Sub
 
@@ -374,3 +374,22 @@ Class RegexMatcher As AbstractRegexMatcher
 	End Function
 
 End Class
+
+
+%REM
+	Gets the JavaMethod with the specified name and signature from the given JavaClass.
+	This is needed to avoid "LS2J Error: Threw java.lang.InternalError" errors on recent
+	Domino versions when accessing Pattern.compile(String, int).
+%END REM
+Private Function getJavaMethod(jClass As JavaClass, methodName As String, signature As String) As JavaMethod
+	Dim jMCollection As JavaMethodCollection
+	Set jMCollection = jClass.getClassMethods()
+		
+	ForAll m In jMCollection
+		If m.Methodname = methodName And m.Signature = signature Then
+			Set getJavaMethod = m
+			Exit Function
+		End If
+	End ForAll
+	Error 1, "Method not found"
+End Function
