@@ -26,9 +26,13 @@ Intended audience: LotusScript developers.
 
 ## Examples
 
-This example uses the `SimpleRegexMatcher` to test for a match. The matching part is then printed.
+These examples assume that you [installed](#how-to-install) the _regex4ls_ library and included it in the current code unit with
 ```vbnet
 Use "Regular Expressions"
+```
+
+This example uses the `SimpleRegexMatcher` to test for a match. The matching part is then printed.
+```vbnet
 Dim Matcher As New SimpleRegexMatcher
 ' search for 00 Agents in a string that contains "007"
 If Matcher.matches("James Bond is agent 007.", "\b00\d\b") Then
@@ -53,3 +57,11 @@ Dim Matcher As New RegexMatcher("From 10:00 To 12:00", "From (\d\d:\d\d) To (\d\
 ' prints "10:00-12:00"
 Print Matcher.replaceAll("$1-$2")
 ```
+
+## How to Install
+
+Download the [latest release](https://github.com/OpenNTF/regex4ls/releases/latest). Extract _regex4ls.ls_ from the zip file.
+
+In Domino Designer, create a LotusScript library with the name "Regular Expressions". Copy the contents of the downloaded file into the library. Save. 
+
+In your client code (agent, another script library, ...), include the library with `Use "Regular Expressions"`.
