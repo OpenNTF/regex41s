@@ -18,7 +18,7 @@ In case of a match it gives you access to the matching part of the original text
 The `RegexMatcher` combines `java.util.regex.Pattern` and `java.util.regex.Matcher` into one handy LotusScript wrapper to perform Regular Expression operations on text. 
 You can do repeated matches on the same string with `find()` to locate multiple occurrences of pattern matches, and you can access captured groups with `group()`. 
 The `replaceAll()` and `replaceFirst()` methods let you replace matching parts with strings that may contain backreferences to captured parts of the original string. 
-In contrast to the `SimpleRegexMatcher` that is targeted to users that are new to the `java.util.regex` classes, `RegexMatcher` assumes a basic level of familiarity with the underlying Java classes.
+Whereas the `SimpleRegexMatcher` is targeted to users that are new to the `java.util.regex` classes, `RegexMatcher` assumes a basic level of familiarity with the underlying Java classes.
 
 The Regular Expressions used in this class follow `java.util.regex.Pattern` syntax as described [here](http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html).
 
@@ -34,8 +34,8 @@ Use "Regular Expressions"
 This example uses the `SimpleRegexMatcher` to test for a match. The matching part is then printed.
 ```vbnet
 Dim Matcher As New SimpleRegexMatcher
-' search for 00 Agents in a string that contains "007"
-If Matcher.matches("James Bond is agent 007.", "\b00\d\b") Then
+' Search for 00 Agents in a string that contains "007". \d matches on word boundaries.
+If Matcher.matches("James Bond is agent 007.", "\b00[1-9]\b") Then
     ' This prints "found agent #007"
     Print "found agent #" & Matcher.match
 End If
@@ -43,7 +43,7 @@ End If
 
 This example features capture groups and a backreference to the first capture group.
 ```vbnet
-' search for people who introduce themselves in a James Bondish way
+' Search for people who introduce themselves in a James Bondish way
 Dim Matcher As New RegexMatcher("My name is Presley. Elvis Presley.", "name is (\w+)\. (\w+) \1\.", 0)
 If Matcher.find() Then
     ' This prints "Elvis Presley"
@@ -54,7 +54,7 @@ End If
 Replace parts of the input using capture groups:
 ```vbnet
 Dim Matcher As New RegexMatcher("From 10:00 To 12:00", "From (\d\d:\d\d) To (\d\d:\d\d)", 0)
-' prints "10:00-12:00"
+' This prints "10:00-12:00"
 Print Matcher.replaceAll("$1-$2")
 ```
 
