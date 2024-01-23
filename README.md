@@ -2,14 +2,14 @@
 
 ## OPENNTF
 
-This project is an [OpenNTF](https://openntf.org/) project, and is available under the Apache Licence V2.0. All other aspects of the project, including contributions, defect reports, discussions, feature requests and reviews are subject to the OpenNTF Terms of Use - available at [http://openntf.org/Internal/home.nsf/dx/Terms_of_Use](http://openntf.org/Internal/home.nsf/dx/Terms_of_Use).
+This project is an [OpenNTF](https://openntf.org/) project, and is available under the Apache Licence V2.0. All other aspects of the project, including contributions, defect reports, discussions, feature requests and reviews are subject to the OpenNTF Terms of Use - available at [https://openntf.org/Internal/home.nsf/dx/Terms_of_Use](https://openntf.org/Internal/home.nsf/dx/Terms_of_Use).
 
 [Project page on OpenNTF](https://openntf.org/main.nsf/project.xsp?r=project/Regular%20Expressions%20for%20LotusScript/)
 
 ## About
 
 This project enables LotusScript developers to use Regular Expressions in their code. 
-It does so by providing a script library with simple wrappers around Java classes that are invoked by [LS2J](https://www-01.ibm.com/support/knowledgecenter/SSVRGU_9.0.1/com.ibm.designer.domino.main.doc/LSAZ_ABOUT_LS2J.html). 
+It does so by providing a script library with simple wrappers around Java classes that are invoked by [LS2J](https://help.hcltechsw.com/dom_designer/11.0.1/basic/LSAZ_ABOUT_LS2J.html). 
 The wrapper classes behave like native LotusScript classes. All the clumsiness of JNI declarations that comes with using LS2J is abstracted away from the user.
 
 The `SimpleRegexMatcher` can determine whether a text matches a pattern. 
@@ -20,7 +20,7 @@ You can do repeated matches on the same string with `find()` to locate multiple 
 The `replaceAll()` and `replaceFirst()` methods let you replace matching parts with strings that may contain backreferences to captured parts of the original string. 
 Whereas the `SimpleRegexMatcher` is targeted to users that are new to the `java.util.regex` classes, `RegexMatcher` assumes a basic level of familiarity with the underlying Java classes.
 
-The Regular Expressions used in this class follow `java.util.regex.Pattern` syntax as described [here](http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html).
+The Regular Expressions used in this class follow `java.util.regex.Pattern` syntax as described [here](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html).
 
 Intended audience: LotusScript developers.
 
